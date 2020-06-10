@@ -10,7 +10,7 @@ export class Profile extends Component {
         </div>
 
         <div>
-          <h2>This weeks bets</h2>
+          <h2>This weeks bets (Profile Page only)</h2>
           <div name="this_week">
             <Table celled>
               <Table.Header>

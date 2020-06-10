@@ -30,15 +30,17 @@ export class App extends Component {
       });
     }
 
-    fetch(
-      "http://api.sportradar.us/ufc/trial/v2/en/seasons.json?api_key=cy82gfyf3wcsy87mkkh646pb"
-    )
-      .then((response) => response.json())
-      .then((data) =>
-        this.setState({
-          events: data,
-        })
-      );
+    fetch("http://localhost:3000/events", {
+      method: "GET",
+      headers: {
+        Authorization: localStorage.getItem("token"),
+      },
+    })
+      .then((resp) => resp.json())
+      .then((data) => {
+        this.setState({ events: data });
+      })
+      .catch((err) => console.log(err));
   }
 
   handleLogin = (user) => {
@@ -55,7 +57,13 @@ export class App extends Component {
         <Navbar />
         <Router>
           <div>
-            <Route exact path="/" component={Betpage} />
+            <Route
+              exact
+              path="/"
+              render={(props) => {
+                return <Betpage {...props} events={this.state.events} />;
+              }}
+            />
             <Route
               path="/login"
               render={(props) => {
