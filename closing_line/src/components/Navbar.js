@@ -4,7 +4,15 @@ export class Navbar extends Component {
   render() {
     return (
       <div>
-        <h1>Navbar Here</h1>
+        <div className="ui menu">
+          <a className="item">UFC Logo</a>
+          <a className="item">Home</a>
+          <a className="item">Event</a>
+          <div className="right menu">
+            <a className="item">Login</a>
+            <a className="item">Sign Up</a>
+          </div>
+        </div>
       </div>
     );
   }
