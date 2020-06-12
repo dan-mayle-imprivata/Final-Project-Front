@@ -16,6 +16,7 @@ export class App extends Component {
     this.state = {
       auth: { currentUser: {} },
       events: [],
+      fights: [],
     };
   }
 
@@ -41,17 +42,50 @@ export class App extends Component {
         this.setState({ events: data });
       })
       .catch((err) => console.log(err));
+
+    fetch("http://localhost:3000/fights", {
+      method: "GET",
+      headers: {
+        Authorization: localStorage.getItem("token"),
+      },
+    })
+      .then((resp) => resp.json())
+      .then((data) => {
+        this.setState({ fights: data });
+      })
+      .catch((err) => console.log(err));
   }
 
   handleLogin = (user) => {
-    const currentUser = { currentUser: user };
+    const currentUser = { currentUser: user.user };
     localStorage.setItem("token", user.token);
 
-    this.setState({ auth: currentUser });
+    this.setState({ auth: currentUser.user });
+  };
+
+  // handleChange = (event) => {
+  //   this.setState({ value: event.target.value });
+  // };
+
+  handleBetSubmit = (newBet) => {
+    console.log(newBet);
+
+    // fetch('http://localhost:3000/bets', {
+    //   method: 'POST',
+    //   headers: {
+    //     'Content-Type': 'application/json',
+    //     'Accept': 'application/json'
+    //   },
+    //   body: JSON.stringify({
+    //     bet: betInfo
+    //   })
+    // })
+    //   .then(res => res.json())
+    //   .then(console.log)
   };
 
   render() {
-    // console.log(this.state.events);
+    console.log(this.state.auth.currentUser);
     return (
       <div className="App">
         <Navbar />
@@ -61,7 +95,21 @@ export class App extends Component {
               exact
               path="/"
               render={(props) => {
-                return <Betpage {...props} events={this.state.events} />;
+                return (
+                  <Betpage
+                    {...props}
+                    events={this.state.events}
+                    bets={
+                      this.state.auth.currentUser.user
+                        ? this.state.auth.currentUser.user.bets
+                        : []
+                    }
+                    fights={this.state.fights}
+                    value={this.state.value}
+                    handleBetSubmit={this.handleBetSubmit}
+                    handleChange={this.handleChange}
+                  />
+                );
               }}
             />
             <Route
