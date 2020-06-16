@@ -59,8 +59,14 @@ export class App extends Component {
   handleLogin = (user) => {
     const currentUser = { currentUser: user.user };
     localStorage.setItem("token", user.token);
-
+    console.log("login");
     this.setState({ auth: currentUser.user });
+  };
+
+  handleLogout = () => {
+    console.log("logout");
+    localStorage.removeItem("token");
+    this.setState({ auth: { currentUser: {} } });
   };
 
   // handleChange = (event) => {
@@ -70,25 +76,35 @@ export class App extends Component {
   handleBetSubmit = (newBet) => {
     console.log(newBet);
 
-    // fetch('http://localhost:3000/bets', {
-    //   method: 'POST',
-    //   headers: {
-    //     'Content-Type': 'application/json',
-    //     'Accept': 'application/json'
-    //   },
-    //   body: JSON.stringify({
-    //     bet: betInfo
-    //   })
-    // })
-    //   .then(res => res.json())
-    //   .then(console.log)
+    fetch("http://localhost:3000/bets", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+        Authorization: localStorage.token,
+      },
+      body: JSON.stringify({
+        bet: { ...newBet, user_id: this.state.auth.currentUser.user.id },
+      }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        // this.setState({
+        //   auth: {
+        //     currentUser: {
+        //       user: {...this.state.auth.currentUser.user, bets: }
+        //     }
+        //   }
+        // })
+      });
   };
 
   render() {
     console.log(this.state.auth.currentUser);
     return (
       <div className="App">
-        <Navbar />
+        <Navbar handleLogout={this.handleLogout} />
         <Router>
           <div>
             <Route
@@ -115,7 +131,13 @@ export class App extends Component {
             <Route
               path="/login"
               render={(props) => {
-                return <Login {...props} handleLogin={this.handleLogin} />;
+                return (
+                  <Login
+                    {...props}
+                    handleLogin={this.handleLogin}
+                    // handleLogout={this.handleLogout}
+                  />
+                );
               }}
             />
             <Route path="/profile" component={Profile} />

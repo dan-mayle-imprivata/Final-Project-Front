@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import "../Login.css";
 
 import api from "../services/api";
 
@@ -47,7 +48,7 @@ export class Login extends Component {
   render() {
     const { fields } = this.state;
     return (
-      <div>
+      <div className="Dan">
         <h1>Log in</h1>
         <div className="ui form">
           <form className="ui large form" onSubmit={this.handleSubmit}>
@@ -80,7 +81,7 @@ export class Login extends Component {
               />
             </div>
             <br />
-            <button type="submit" className="ui green button fluid">
+            <button type="submit" className="ui red button fluid">
               Login
             </button>
           </form>

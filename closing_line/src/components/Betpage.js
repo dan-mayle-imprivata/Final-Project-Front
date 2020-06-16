@@ -5,10 +5,11 @@ export class Betpage extends Component {
   constructor() {
     super();
     this.state = {
-      value: "",
-      fight: "",
+      amount: "",
+      fight_id: "",
       fighter: "",
       odds: "",
+      bet_type: "",
     };
   }
   // If this.state.fighter == Fighter B // Then return 2nd element of the array
@@ -16,57 +17,58 @@ export class Betpage extends Component {
 
   // use square brackets below
   handleChange = (event) => {
-    // console.log(event.target.value);
-    // console.log(event.target.name);
+    console.log(event.target.value);
     this.setState(
       {
-        [event.target.name]: event.target.value,
+        [event.target.name]: parseInt(event.target.value, 10),
+      },
+      () => {
+        console.log(this.state);
       }
-      // () => {
-      //   console.log(this.state);
-      // }
     );
   };
+  // handleNewSubmit = (event) => {
+  //   event.preventDefault();
 
-  handleNewSubmit = (event) => {
-    event.preventDefault();
-    // if (this.state.submit === false) {
-    //   this.setState({
-    //     submit: true,
-    //   });
-    // }
-    this.renderOdds();
-    this.renderFighters();
-    this.renderBets();
+  //   this.renderOdds();
+  //   this.renderFighters();
+  //   this.renderBets();
 
-    // console.log(this.state);
-    // console.log(this.state.fight);
-  };
+  //   // POST fetch to save
+  //   // PATCH fetch to update
+  // };
 
   /// Render Functions
 
   renderFights = () => {
-    return this.props.fights.map((fight) => (
-      <option>{`${fight.competitor_one} vs ${fight.competitor_two}`}</option>
-    ));
+    return this.props.fights.map((fight) => {
+      return (
+        <option
+          value={fight.id}
+        >{`${fight.competitor_one} vs ${fight.competitor_two}`}</option>
+      );
+    });
   };
 
-  renderRow = (bet) => {
-    // go back to serializers and include fighters name in bet object
-    console.log(bet);
-    return (
-      <Table.Row>
-        <Table.Cell>{bet.bet_type}</Table.Cell>
-        <Table.Cell>Fighter 1</Table.Cell>
-        <Table.Cell>Fighter 2</Table.Cell>
-        <Table.Cell>{bet.odds}</Table.Cell>
-        <Table.Cell>{bet.amount}</Table.Cell>
-      </Table.Row>
-    );
-  };
+  // renderRow = (bet) => {
+  //   // go back to serializers and include fighters name in bet object
+  //   console.log(bet);
 
+  //   return (
+  //     <Table.Row>
+  //       <Table.Cell>{bet.bet_type}</Table.Cell>
+  //       <Table.Cell>Fighter 1</Table.Cell>
+  //       <Table.Cell>Fighter 2</Table.Cell>
+  //       <Table.Cell>{bet.odds}</Table.Cell>
+  //       <Table.Cell>{bet.amount}</Table.Cell>
+  //     </Table.Row>
+  //   );
+  // };
+  // onClick={this.renderFights}
   render() {
-    //console.log(this.props.bets);
+    // console.log(this.props.bets);
+    // console.log(this.handleChange);
+
     return (
       <div>
         <div>
@@ -82,7 +84,7 @@ export class Betpage extends Component {
                 control="select"
                 value={this.state.fight}
                 onChange={this.handleChange}
-                name="fight"
+                name="fight_id"
               >
                 {this.renderFights()}
               </Form.Field>
@@ -103,9 +105,9 @@ export class Betpage extends Component {
                 label="Straight"
                 control="input"
                 type="radio"
-                name="htmlRadios"
-                // value=
-                // onChange={this.handleNewChange}
+                name="bet_type"
+                value={this.state.bet_type}
+                onChange={this.handleChange}
               />
               <Input
                 labelPosition="right"
@@ -121,8 +123,8 @@ export class Betpage extends Component {
                 labelPosition="right"
                 type="text"
                 placeholder="Bet Amount"
-                name="value"
-                value={this.state.value}
+                name="amount"
+                value={this.state.amount}
                 onChange={this.handleChange}
               >
                 <input />
@@ -146,7 +148,7 @@ export class Betpage extends Component {
             </Table.Header>
 
             <Table.Body>
-              {this.props.bets.map((bet) => this.renderRow(bet))}
+              {/* {this.props.bets.map((bet) => this.renderRow(bet))} */}
             </Table.Body>
           </Table>
         </div>
@@ -157,4 +159,24 @@ export class Betpage extends Component {
 
 export default Betpage;
 
-// Form will need a onSubmit at some point.
+// if (typeof (parseInt(event.target.value, 10) === "number")) {
+//   console.log("WTF");
+//   this.setState(
+//     {
+//       [event.target.name]: event.target.value,
+//     },
+//     () => {
+//       console.log(this.state);
+//     }
+//   );
+// } else {
+//   console.log("SMH");
+//   this.setState(
+//     {
+//       [event.target.name]: parseInt(event.target.value, 10),
+//     },
+//     () => {
+//       console.log(this.state);
+//     }
+//   );
+// }
