@@ -2,31 +2,73 @@ import React, { Component } from "react";
 import { Input, Label, Form, Menu, Table } from "semantic-ui-react";
 
 export class Betpage extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       amount: "",
       fight_id: "",
       fighter: "",
+      fighters: [],
       odds: "",
       bet_type: "",
     };
   }
   // If this.state.fighter == Fighter B // Then return 2nd element of the array
   // else return 1st element of the array
-
+  // event.target.value.split( " vs ")
   // use square brackets below
   handleChange = (event) => {
     console.log(event.target.value);
-    this.setState(
-      {
-        [event.target.name]: parseInt(event.target.value, 10),
-      },
-      () => {
-        console.log(this.state);
-      }
-    );
+    if (event.target.name == "bet_type") {
+      // console.log("We got a string");
+
+      this.setState(
+        {
+          [event.target.name]: event.target.value,
+        },
+        () => {
+          // console.log(this.state);
+        }
+        // console.log(this.state.fight_id)
+      );
+    } else if (event.target.name == "fight_id") {
+      const fight = this.props.fights.find(
+        (fight) => fight.id == event.target.value
+      );
+      this.setState(
+        {
+          fight_id: parseInt(event.target.value, 10),
+          fighters: [fight.competitor_one, fight.competitor_two],
+        },
+        () => {
+          console.log(this.state);
+        }
+      );
+    } else if (event.target.name == "fighter") {
+      const fighter =
+        event.target.value == "Fighter A"
+          ? this.state.fighters[0]
+          : this.state.fighters[1];
+      this.setState({
+        fighter,
+      });
+    } else {
+      // console.log("We got a number");
+      this.setState(
+        {
+          [event.target.name]: parseInt(event.target.value, 10),
+        },
+        () => {
+          // console.log(this.state);
+        }
+      );
+    }
   };
+
+  //   const fighter = this.props.fights.find(
+  //     (fight) => fight.id == event.target.value
+  //   );
+
   // handleNewSubmit = (event) => {
   //   event.preventDefault();
 
@@ -50,25 +92,37 @@ export class Betpage extends Component {
     });
   };
 
-  // renderRow = (bet) => {
-  //   // go back to serializers and include fighters name in bet object
-  //   console.log(bet);
+  renderRow = (bet) => {
+    console.log(bet);
 
-  //   return (
-  //     <Table.Row>
-  //       <Table.Cell>{bet.bet_type}</Table.Cell>
-  //       <Table.Cell>Fighter 1</Table.Cell>
-  //       <Table.Cell>Fighter 2</Table.Cell>
-  //       <Table.Cell>{bet.odds}</Table.Cell>
-  //       <Table.Cell>{bet.amount}</Table.Cell>
-  //     </Table.Row>
-  //   );
-  // };
+    return (
+      <Table.Row>
+        <Table.Cell>{bet.bet_type}</Table.Cell>
+        <Table.Cell>{bet.fighter}</Table.Cell>
+        <Table.Cell>{bet.opponent}</Table.Cell>
+        <Table.Cell>{bet.odds}</Table.Cell>
+        <Table.Cell>{bet.amount}</Table.Cell>
+      </Table.Row>
+    );
+  };
+
   // onClick={this.renderFights}
-  render() {
-    // console.log(this.props.bets);
-    // console.log(this.handleChange);
 
+  componentDidUpdate() {
+    if (this.props.fights.length > 0 && this.state.fighters == 0) {
+      const fighters = [
+        this.props.fights[0].competitor_one,
+        this.props.fights[0].competitor_two,
+      ];
+      this.setState({
+        fighters,
+        fighter: fighters[0],
+        fight_id: this.props.fights[0].id,
+      });
+    }
+  }
+
+  render() {
     return (
       <div>
         <div>
@@ -91,7 +145,7 @@ export class Betpage extends Component {
               <Form.Field
                 label="Select Fighter"
                 control="select"
-                value={this.state.fighter}
+                // value={this.state.fighter}
                 onChange={this.handleChange}
                 name="fighter"
               >
@@ -106,7 +160,7 @@ export class Betpage extends Component {
                 control="input"
                 type="radio"
                 name="bet_type"
-                value={this.state.bet_type}
+                value="straight"
                 onChange={this.handleChange}
               />
               <Input
@@ -148,7 +202,7 @@ export class Betpage extends Component {
             </Table.Header>
 
             <Table.Body>
-              {/* {this.props.bets.map((bet) => this.renderRow(bet))} */}
+              {this.props.bets.map((bet) => this.renderRow(bet))}
             </Table.Body>
           </Table>
         </div>
@@ -159,24 +213,13 @@ export class Betpage extends Component {
 
 export default Betpage;
 
-// if (typeof (parseInt(event.target.value, 10) === "number")) {
-//   console.log("WTF");
-//   this.setState(
-//     {
-//       [event.target.name]: event.target.value,
-//     },
-//     () => {
-//       console.log(this.state);
-//     }
+// if (event.target.name == "fight_id") {
+//   console.log(
+//     this.props.fights.find((fight) => fight.id == event.target.value)
 //   );
-// } else {
-//   console.log("SMH");
-//   this.setState(
-//     {
-//       [event.target.name]: parseInt(event.target.value, 10),
-//     },
-//     () => {
-//       console.log(this.state);
-//     }
+//   const fighter = this.props.fights.find(
+//     (fight) => fight.id == event.target.value
 //   );
+
+//   console.log(fighter.competitor_one);
 // }

@@ -22,36 +22,18 @@ export class Login extends Component {
     this.setState({ fields: newFields });
   };
 
-  handleSubmit = (e) => {
-    e.preventDefault();
-
-    api.auth
-      .login(
-        this.state.fields.name,
-        this.state.fields.email,
-        this.state.fields.password
-      )
-      .then((currentUser) => {
-        if (currentUser.error) {
-          this.setState({ error: true });
-        } else {
-          localStorage.setItem("token", currentUser.token);
-          this.props.handleLogin(currentUser);
-        }
-      })
-      .then(() => {
-        // this redirects user to new page
-        this.props.history.push("/");
-      });
-  };
-
   render() {
     const { fields } = this.state;
     return (
       <div className="Dan">
         <h1>Log in</h1>
         <div className="ui form">
-          <form className="ui large form" onSubmit={this.handleSubmit}>
+          <form
+            className="ui large form"
+            onSubmit={(e) => {
+              this.props.handleLogin(e, this.state.fields);
+            }}
+          >
             <div className="ui field">
               <label>Name</label>
               <input
