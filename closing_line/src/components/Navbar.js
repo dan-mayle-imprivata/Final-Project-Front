@@ -1,18 +1,24 @@
 import React, { Component } from "react";
+import "../Navbar.css";
+import Logo0 from "./IMG/Logo.png";
 
 export class Navbar extends Component {
   render() {
     return (
       <div>
         <div className="ui menu">
-          <a className="item">UFC Logo</a>
-          <a href="/" className="item">
-            Home
+          <a className="item">
+            <img src={Logo0} />
           </a>
-          <a className="item">Event</a>
+          <a href="/" className="item">
+            <h4 className="navtext">Home</h4>
+          </a>
+          <a className="item">
+            <h4 className="navtext">Event</h4>
+          </a>
           <div className="right menu">
             <a href="/login" className="item">
-              Login
+              <h4 className="navtext">Login</h4>
             </a>
             <a
               href="/login"
@@ -22,10 +28,12 @@ export class Navbar extends Component {
                 this.props.handleLogout();
               }}
             >
-              Logout
+              <h4 className="navtext">Logout</h4>
             </a>
 
-            <a className="item">Sign Up</a>
+            <a className="item" href="/signup">
+              <h4 className="navtext">Signup</h4>
+            </a>
           </div>
         </div>
       </div>

@@ -1,0 +1,61 @@
+#top {
+  /* margin-top: 10px; */
+  height: 100px;
+  width: 100%;
+  background: #1f1f1f;
+}
+
+#middle {
+  height: 1000px;
+  width: 100%;
+  background: #1f1f1f;
+}
+
+#bottom {
+  height: 100px;
+  width: 100%;
+  background: #1f1f1f;
+}
+
+#redline {
+  height: 5px;
+  width: 100%;
+  background: linear-gradient(
+    180deg,
+    #e4162a 0%,
+    rgba(29, 0, 3, 0.82) 100%
+  ) !important;
+}
+#logo {
+  height: 50px;
+  width: 313px;
+  background: #1f1f1f !important;
+  margin: auto;
+}
+
+img {
+  margin-top: 40px;
+}
+
+.ui.form {
+  position: relative;
+  left: 14%;
+  max-width: 75% !important;
+  margin-top: 2rem;
+}
+
+.ui.green.button,
+.ui.green.buttons .button {
+  background: linear-gradient(
+    180deg,
+    #e4162a 0%,
+    rgba(29, 0, 3, 0.82) 100%
+  ) !important;
+}
+
+#tagline {
+  color: #f2f2f2;
+  position: relative;
+  top: 10px;
+}
+/* use !important to override */

@@ -12,6 +12,7 @@ import Login from "./components/Login";
 import Betpage from "./components/Betpage";
 import Profile from "./components/Profile";
 import Event from "./components/Event";
+import Signup from "./components/Signup";
 
 import React, { Component } from "react";
 
@@ -60,6 +61,13 @@ export class App extends Component {
       })
       .catch((err) => console.log(err));
   }
+
+  // handleSignup = (user) => {
+  //   const currentUser = { currentUser: user };
+  //   localStorage.setItem("token", user.token);
+
+  //   this.setState({ auth: currentUser });
+  // };
 
   handleLogout = () => {
     console.log("logout");
@@ -164,6 +172,12 @@ export class App extends Component {
                   // handleLogout={this.handleLogout}
                 />
               );
+            }}
+          />
+          <Route
+            path="/signup"
+            render={(props) => {
+              return <Signup />;
             }}
           />
           <Route path="/profile" component={Profile} />
