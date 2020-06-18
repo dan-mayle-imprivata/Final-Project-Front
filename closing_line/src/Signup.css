@@ -31,6 +31,8 @@
   width: 313px;
   background: #1f1f1f !important;
   margin: auto;
+  position: relative;
+  right: 80px;
 }
 
 img {
@@ -41,7 +43,7 @@ img {
   position: relative;
   left: 14%;
   max-width: 75% !important;
-  margin-top: 2rem;
+  margin-top: 25rem;
 }
 
 .ui.green.button,
@@ -55,7 +57,8 @@ img {
 
 #tagline {
   color: #f2f2f2;
+  font-size: 2rem;
   position: relative;
-  top: 10px;
+  top: 160px;
 }
 /* use !important to override */
