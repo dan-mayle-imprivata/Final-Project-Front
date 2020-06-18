@@ -36,14 +36,22 @@
 }
 
 img {
-  margin-top: 40px;
+  margin-top: 80px;
 }
 
 .ui.form {
   position: relative;
-  left: 14%;
-  max-width: 75% !important;
-  margin-top: 25rem;
+  left: 21%;
+  max-width: 65% !important;
+  margin-top: 23rem;
+}
+
+.input {
+  height: 70px;
+}
+
+.ui.field {
+  margin-bottom: 2.5em !important;
 }
 
 .ui.green.button,
@@ -53,12 +61,21 @@ img {
     #e4162a 0%,
     rgba(29, 0, 3, 0.82) 100%
   ) !important;
+  height: 50px;
+}
+
+.ui.fluid.button,
+.ui.fluid.buttons {
+  width: 40% !important;
+  position: relative;
+  left: 250px;
 }
 
 #tagline {
   color: #f2f2f2;
-  font-size: 2rem;
+  font-size: 2.4rem;
   position: relative;
-  top: 160px;
+  top: 190px;
+  left: 75px;
 }
 /* use !important to override */

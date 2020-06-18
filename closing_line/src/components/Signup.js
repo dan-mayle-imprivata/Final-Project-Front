@@ -18,17 +18,22 @@ export class Signup extends Component {
               <div className="ui field">
                 <br />
                 {/* <label>Name</label> */}
-                <input name="name" placeholder="Name"></input>
+                <input className="input" name="name" placeholder="Name"></input>
               </div>
               <div className="ui field">
                 <br />
                 {/* <label>Email</label> */}
-                <input name="email" placeholder="Email" />
+                <input className="input" name="email" placeholder="Email" />
               </div>
               <div className="ui field">
                 <br />
                 {/* <label>Password</label> */}
-                <input name="password" type="password" placeholder="Password" />
+                <input
+                  className="input"
+                  name="password"
+                  type="password"
+                  placeholder="Password"
+                />
               </div>
               <br />
               <br />
