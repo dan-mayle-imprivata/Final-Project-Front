@@ -62,12 +62,12 @@ export class App extends Component {
       .catch((err) => console.log(err));
   }
 
-  // handleSignup = (user) => {
-  //   const currentUser = { currentUser: user };
-  //   localStorage.setItem("token", user.token);
+  handleSignup = (user) => {
+    const currentUser = { currentUser: user };
+    localStorage.setItem("token", user.token);
 
-  //   this.setState({ auth: currentUser });
-  // };
+    this.setState({ auth: currentUser });
+  };
 
   handleLogout = () => {
     console.log("logout");
@@ -98,9 +98,9 @@ export class App extends Component {
       });
   };
 
-  // handleChange = (event) => {
-  //   this.setState({ value: event.target.value });
-  // };
+  handleChange = (event) => {
+    this.setState({ value: event.target.value });
+  };
 
   handleBetSubmit = (newBet) => {
     console.log(newBet);
@@ -133,9 +133,24 @@ export class App extends Component {
       });
   };
 
+  handleDeleteBet = (betId) => {
+    const token = localStorage.getItem("token");
+
+    fetch(`http://localhost:3000/bets/${betId}`, {
+      method: "DELETE",
+      headers: {
+        Authorization: token,
+      },
+    });
+
+    this.setState((prevState) => ({
+      bets: prevState.bets.filter((b) => b.id !== betId),
+    }));
+  };
+
   render() {
-    // console.log(this.props.history);
     console.log(this.state.auth);
+    console.log(this.props.history);
     return (
       <div className="App">
         <Navbar handleLogout={this.handleLogout} />
@@ -177,7 +192,12 @@ export class App extends Component {
           <Route
             path="/signup"
             render={(props) => {
-              return <Signup />;
+              return (
+                <Signup
+                  auth={this.state.auth}
+                  handleSignup={this.handleSignup}
+                />
+              );
             }}
           />
           <Route path="/profile" component={Profile} />

@@ -8,7 +8,7 @@ export class Navbar extends Component {
       <div>
         <div className="ui menu">
           <a className="item">
-            <img src={Logo0} />
+            <img id="small" src={Logo0} />
           </a>
           <a href="/" className="item">
             <h4 className="navtext">Home</h4>
