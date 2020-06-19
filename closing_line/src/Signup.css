@@ -31,8 +31,8 @@
   width: 313px;
   background: #1f1f1f !important;
   margin: auto;
-  position: relative;
-  right: 50px;
+  position: absolute;
+  left: 36.5%;
 }
 
 /* img {
@@ -46,10 +46,16 @@
 
 .ui.form {
   position: relative;
-  left: 21%;
+  left: 18%;
   max-width: 65% !important;
   margin-top: 23rem;
 }
+
+/* .ui.large.form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+} */
 
 .input {
   height: 70px;
@@ -73,7 +79,7 @@
 .ui.fluid.buttons {
   width: 40% !important;
   position: relative;
-  left: 250px;
+  left: 305px;
 }
 
 #tagline {
@@ -81,6 +87,6 @@
   font-size: 2.4rem;
   position: relative;
   top: 190px;
-  margin-left: 200px;
+  margin-left: 36.5px;
 }
 /* use !important to override */
