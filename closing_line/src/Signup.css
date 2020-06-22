@@ -32,7 +32,7 @@
   background: #1f1f1f !important;
   margin: auto;
   position: absolute;
-  left: 36.5%;
+  left: 25%;
 }
 
 /* img {
@@ -79,7 +79,7 @@
 .ui.fluid.buttons {
   width: 40% !important;
   position: relative;
-  left: 305px;
+  left: 185px;
 }
 
 #tagline {
@@ -87,6 +87,8 @@
   font-size: 2.4rem;
   position: relative;
   top: 190px;
-  margin-left: 36.5px;
+  /* margin-left: 20px; */
 }
 /* use !important to override */
+
+/* 1272 is center mark*/

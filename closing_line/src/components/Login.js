@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import "../Login.css";
+import Logo from "./IMG/Logo-1.png";
 
 import api from "../services/api";
 
@@ -26,17 +27,19 @@ export class Login extends Component {
     const { fields } = this.state;
     return (
       <div className="Dan">
-        <h1>Log in</h1>
+        <img id="big" src={Logo} />
+        <h3 id="logintagline">Welcome Back</h3>
         <div className="ui form">
           <form
-            className="ui large form"
+            className="ui large form2"
             onSubmit={(e) => {
               this.props.handleLogin(e, this.state.fields);
             }}
           >
             <div className="ui field">
-              <label>Name</label>
+              <br />
               <input
+                className="input"
                 name="name"
                 placeholder="Name"
                 value={fields.name}
@@ -44,8 +47,9 @@ export class Login extends Component {
               />
             </div>
             <div className="ui field">
-              <label>Email</label>
+              <br />
               <input
+                className="input"
                 name="email"
                 placeholder="Email"
                 value={fields.email}
@@ -53,8 +57,9 @@ export class Login extends Component {
               />
             </div>
             <div className="ui field">
-              <label>Password</label>
+              <br />
               <input
+                className="input"
                 name="password"
                 type="password"
                 placeholder="Password"
@@ -68,6 +73,8 @@ export class Login extends Component {
             </button>
           </form>
         </div>
+        <div id="loginredline"></div>
+        <div id="loginbottom"></div>
       </div>
     );
   }

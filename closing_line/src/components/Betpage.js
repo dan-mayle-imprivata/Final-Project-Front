@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import { Input, Label, Form, Menu, Table } from "semantic-ui-react";
+import "../Betpage.css";
+import Logo2 from "./IMG/Logo-2 .png";
 
 export class Betpage extends Component {
   constructor(props) {
@@ -124,9 +126,12 @@ export class Betpage extends Component {
 
   render() {
     return (
-      <div>
+      <div id="body">
         <div>
-          <h1>Enter your bet to track</h1>
+          <div id="Betpagelogo">
+            <img id="big2" src={Logo2} />
+          </div>
+          <h2 id="betinstructions">Add a new bet to your tracking</h2>
           <Form
             onSubmit={() => {
               this.props.handleBetSubmit(this.state);

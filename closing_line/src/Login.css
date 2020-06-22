@@ -1,6 +1,53 @@
-/* .Dan {
-  background-color: Black;
-} */
-/* .ui.red.button {
-  background-color: blue;
-} */
+.Dan {
+  background: #1f1f1f;
+}
+
+#big {
+  display: inline-block;
+  align-items: center;
+  text-align: center;
+}
+
+h3#logintagline {
+  position: relative;
+  top: 20px;
+  color: #f2f2f2;
+  font-size: 2.4rem;
+}
+form.ui.large.form2 {
+  position: relative;
+  bottom: 250px;
+  max-width: 65% !important;
+  left: 18%;
+}
+.ui.form {
+  max-width: 65% !important;
+}
+
+#logininput {
+  height: 70px !important;
+  position: relative;
+}
+
+.ui.red.button {
+  height: 50px;
+  width: 40%;
+  background: linear-gradient(
+    180deg,
+    #e4162a 0%,
+    rgba(29, 0, 3, 0.82) 100%
+  ) !important;
+}
+
+#loginredline {
+  height: 5px;
+  width: 100%;
+  position: relative;
+  bottom: 100px;
+  background: linear-gradient(
+    180deg,
+    #e4162a 0%,
+    rgba(29, 0, 3, 0.82) 100%
+  ) !important;
+}
+/* Flex box CSS*/

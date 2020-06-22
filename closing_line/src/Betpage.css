@@ -1,0 +1,59 @@
+#body {
+  background: linear-gradient(180deg, #b61727 0%, #160708 61.46%);
+}
+
+#betinstructions {
+  color: white;
+  position: relative;
+  top: 80px;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 33px;
+  /* identical to box height */
+
+  display: inline-block;
+  align-items: center;
+  text-align: center;
+}
+
+#big2 {
+  height: 70px;
+  position: relative;
+  top: 100px;
+  display: inline-block;
+  align-items: center;
+  text-align: center;
+}
+
+.ui.table thead th {
+  background: #1f1f1f !important;
+  color: #f2f2f2 !important;
+  position: relative;
+}
+
+tr:nth-child(odd) {
+  background: #e5e5e5;
+}
+
+form.ui.form {
+  position: relative;
+  bottom: 50px;
+}
+
+button {
+  position: relative;
+  top: 10px;
+  height: 40px;
+  width: 20%;
+  font-weight: 700;
+  font-family: Lato, "Helvetica Neue", Arial, Helvetica, sans-serif;
+  border: none;
+  border-radius: 0.28571429rem;
+  color: white;
+  background: linear-gradient(
+    180deg,
+    #e4162a 0%,
+    rgba(29, 0, 3, 0.82) 100%
+  ) !important;
+}

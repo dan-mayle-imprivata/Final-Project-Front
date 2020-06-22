@@ -149,7 +149,7 @@ export class App extends Component {
   };
 
   render() {
-    console.log(this.state.auth);
+    console.log(this.state.auth.currentUser);
     console.log(this.props.history);
     return (
       <div className="App">
